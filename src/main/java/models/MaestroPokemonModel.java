@@ -11,7 +11,6 @@ public class MaestroPokemonModel {
     private final String email;
     private final boolean esHombre;
 
-
     public MaestroPokemonModel() {
         var faker = new Faker();
         nombre = faker.name().firstName();
@@ -20,7 +19,34 @@ public class MaestroPokemonModel {
         peso = faker.random().nextDouble();
         pais = faker.address().country();
         email = faker.internet().emailAddress();
-        esHombre=faker.bool().bool();
+        esHombre = faker.bool().bool();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isEsHombre() {
+        return esHombre;
+    }
 }

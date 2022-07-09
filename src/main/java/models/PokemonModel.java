@@ -6,7 +6,7 @@ import com.poiji.annotation.ExcelSheet;
 @ExcelSheet("pokemonList")
 public class PokemonModel {
     @ExcelCellName("ID")
-    private String id;
+    private int id;
     @ExcelCellName("NOMBRE")
     private String nombre;
     @ExcelCellName("NOMBRE JAPONES")
@@ -26,7 +26,7 @@ public class PokemonModel {
     @ExcelCellName("ATRAPADO")
     private boolean atrapado;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -64,5 +64,9 @@ public class PokemonModel {
 
     public Boolean getAtrapado() {
         return atrapado;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
