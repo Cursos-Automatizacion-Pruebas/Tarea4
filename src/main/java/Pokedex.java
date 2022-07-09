@@ -1,29 +1,40 @@
-import com.github.javafaker.Pokemon;
 import models.PokemonModel;
 import utilities.ExcelReader;
+import utilities.Logs;
+import utilities.MapParser;
 
 public class Pokedex {
+    private static final Logs log = new Logs();
 
-    void imprimirPokemon(PokemonModel pokemon){
-        var stringToPrint = String.format("el ID es %s, el nombre es %s , el nombre japaones es is %s ,el atk es %d" +
-                        "el def es %d","el sp es %d","el spdef es %d","el crit es %d","el peso es %f" +
-                        "el atrapado es %b",
-                pokemon.getId(),
-                pokemon.getNombre(),
-                pokemon.getNombreJapones(),
-                pokemon.getAtk(),
-                pokemon.getDef(),
-                pokemon.getSp(),
-                pokemon.getSpDef(),
-                pokemon.getCrit(),
-                pokemon.getPeso(),
-                pokemon.getAtrapado()
-        );
-        System.out.println(stringToPrint);
+    static void imprimirPokemon(PokemonModel pokemon) {
+        System.out.println(
+                "ID:" + pokemon.getId() + "\n" +
+                        "NOMBRE: " + pokemon.getNombre() + "\n" +
+                        "NOMBRE JAPONES: " + pokemon.getNombreJapones() + "\n" +
+                        "ATK: " + pokemon.getAtk() + "\n" +
+                        "DEF: " + pokemon.getDef() + "\n" +
+                        "SP: " + pokemon.getSp() + "\n" +
+                        "SPDEF: " + pokemon.getSpDef() + "\n" +
+                        "CRIT: " + pokemon.getCrit() + "\n" +
+                        "PESO: " + pokemon.getPeso() + "\n" +
+                        "ATRAPADO:" + pokemon.getAtrapado());
     }
-    void imprimirListaPokemons(){
 
+    static void imprimirListaPokemons() {
+        var excelReader = new ExcelReader();
+        var pokemonsList = excelReader.readPokemonModelFromExcel();
+        for (PokemonModel pokemonls : pokemonsList) {
+            if (pokemonls.getAtrapado()) {
+                imprimirPokemon(pokemonls);
+            }
+        }
+    }
 
+    static String quienEsEsePokemon(int id) {
+        log.debug("obtenemos el ID");
+        var mapParser = new MapParser();
+        var pokemonsMap = mapParser.getPokemonModelMap();
+        return pokemonsMap.get(id).toString();
     }
 }
 

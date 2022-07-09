@@ -11,7 +11,7 @@ public class ExcelReader {
     private final Logs log = new Logs();
 
     public List<PokemonModel> readPokemonModelFromExcel() {
-        log.debug("Reading pokemon from excel");// debug para resultados que el usuario no realiza, es decir propio del desarollo
+        log.debug("Reading pokemon from excel");
         return Poiji.fromExcel(new File(excelPath), PokemonModel.class);
     }
 }
